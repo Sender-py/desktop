@@ -1,0 +1,58 @@
+name: Build Sender.py
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [created]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - run: pip install pyinstaller
+      - run: pyinstaller --onefile sender.py
+      - uses: actions/upload-artifact@v3
+        with:
+          name: sender-windows
+          path: dist/sender.exe
+
+  build-linux-deb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - run: pip install pyinstaller
+      - run: pyinstaller --onefile sender.py
+      - run: |
+          sudo apt-get install -y ruby ruby-dev
+          sudo gem install fpm
+          fpm -s dir -t deb -n sender-py -v 1.0 dist/sender=/usr/local/bin/sender
+      - uses: actions/upload-artifact@v3
+        with:
+          name: sender-linux-deb
+          path: "*.deb"
+
+  build-linux-rpm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - run: pip install pyinstaller
+      - run: pyinstaller --onefile sender.py
+      - run: |
+          sudo apt-get install -y ruby ruby-dev rpm
+          sudo gem install fpm
+          fpm -s dir -t rpm -n sender-py -v 1.0 dist/sender=/usr/local/bin/sender
+      - uses: actions/upload-artifact@v3
+        with:
+          name: sender-linux-rpm
+          path: "*.rpm"
