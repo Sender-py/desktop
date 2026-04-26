@@ -10,12 +10,12 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - run: pip install pyinstaller
-      - run: pyinstaller --onefile sender.py
+      - run: pip install pyinstaller customtkinter requests
+      - run: pyinstaller --onefile src/sender.py
       - uses: actions/upload-artifact@v4
         with:
           name: sender-windows
@@ -24,12 +24,12 @@ jobs:
   build-linux-deb:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - run: pip install pyinstaller
-      - run: pyinstaller --onefile sender.py
+      - run: pip install pyinstaller customtkinter requests
+      - run: pyinstaller --onefile src/sender.py
       - run: |
           sudo apt-get install -y ruby ruby-dev
           sudo gem install fpm
@@ -42,12 +42,12 @@ jobs:
   build-linux-rpm:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - run: pip install pyinstaller
-      - run: pyinstaller --onefile sender.py
+      - run: pip install pyinstaller customtkinter requests
+      - run: pyinstaller --onefile src/sender.py
       - run: |
           sudo apt-get install -y ruby ruby-dev rpm
           sudo gem install fpm
