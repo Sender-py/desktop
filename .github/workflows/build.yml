@@ -16,7 +16,7 @@ jobs:
           python-version: '3.x'
       - run: pip install pyinstaller
       - run: pyinstaller --onefile sender.py
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: sender-windows
           path: dist/sender.exe
@@ -34,7 +34,7 @@ jobs:
           sudo apt-get install -y ruby ruby-dev
           sudo gem install fpm
           fpm -s dir -t deb -n sender-py -v 1.0 dist/sender=/usr/local/bin/sender
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: sender-linux-deb
           path: "*.deb"
@@ -52,7 +52,7 @@ jobs:
           sudo apt-get install -y ruby ruby-dev rpm
           sudo gem install fpm
           fpm -s dir -t rpm -n sender-py -v 1.0 dist/sender=/usr/local/bin/sender
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: sender-linux-rpm
           path: "*.rpm"
