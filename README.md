@@ -14,9 +14,16 @@ DELETE Requests (with bearer token)<br>
 
 ## Installation
 
-```bash
 
+Go to https://github.com/Sender-py/desktop/actions/runs/24965337942
+Or: 
+```bash
+git clone https://github.com/Sender-py/desktop.git
+cd desktop && cd src
+pip install -r requirements.txt
+python sender.py
 ```
+
 
 
 
