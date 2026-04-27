@@ -57,7 +57,7 @@ jobs:
           name: sender-linux-rpm
           path: "*.rpm"
 
-build-linux-pkg:
+  build-linux-pkg:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
