@@ -15,7 +15,7 @@ DELETE Requests (with bearer token)<br>
 ## Installation
 
 
-Go to https://github.com/Sender-py/desktop/actions/runs/24965337942
+Go to https://github.com/Sender-py/desktop/actions/workflows/build.yml and click on the latest workflow, then scroll and download for you Operating System.
 Or: 
 ```bash
 git clone https://github.com/Sender-py/desktop.git
