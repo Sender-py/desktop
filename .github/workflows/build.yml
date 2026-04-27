@@ -67,7 +67,7 @@ jobs:
       - run: pip install pyinstaller customtkinter requests
       - run: pyinstaller --onefile src/sender.py
       - run: |
-          sudo apt-get install -y ruby ruby-dev
+          sudo apt-get install -y ruby ruby-dev libarchive-tools
           sudo gem install fpm
           fpm -s dir -t pacman -n sender-py -v 1.0 dist/sender=/usr/local/bin/sender
       - uses: actions/upload-artifact@v4
